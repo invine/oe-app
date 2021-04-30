@@ -80,16 +80,13 @@ export default {
       fetch(CATALOG_URL + "/api/v1/om-ordering-catalog/catalog/snapshot")
         .then((response) => response.json())
         .then((data) => (this.catalogSnapshot = data));
-      this.clearOrder();
     },
   },
   watch: {
     version: {
       handler: function (version) {
-        if (this) {
-          this.clearOrder();
-        }
-        localStorage.setItem("order-entry-version-vuejs-2.0", version)
+        localStorage.setItem("order-entry-version-vuejs-2.0", version);
+        this.clearOrder();
       },
     },
     order: {
@@ -101,6 +98,7 @@ export default {
     catalogSnapshot: {
       handler: function (catalogSnapshot) {
         catalogSnapshotStorage.save(catalogSnapshot);
+        this.clearOrder();
       },
       deep: true,
     },
