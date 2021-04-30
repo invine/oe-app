@@ -1,25 +1,30 @@
 <template>
   <div class="order-header">
     <h1>Table Order Entry</h1>
-    <select>
-      <option>3</option>
-      <option>2</option>
+    <span>Catalog Version</span>
+    <select
+      v-bind:value="value"
+      v-on:change="$emit('input', $event.target.value)"
+    >
+      <option v-for="v in versions" v-bind:key="v">
+        {{ v }}
+      </option>
     </select>
-    <select>
-      <option>Product Order</option>
-      <option>Service Order</option>
-    </select>
-    <button v-on:click="clearOrder">Clear</button>
+    <button v-on:click="$emit('reloadCatalog')">Reload Catalog</button>
+    <button v-on:click="$emit('clearOrder')">Clear</button>
   </div>
 </template>
 
 <script>
 export default {
   name: "TheHeader",
-  props: {},
-  methods: {
-    clearOrder: function () {
-      this.$emit("clearOrder");
+  props: {
+    value: String,
+    catalogSnapshot: Array,
+  },
+  computed: {
+    versions: function () {
+      return this.catalogSnapshot.map((el) => el.majorVersion);
     },
   },
 };

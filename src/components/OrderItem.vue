@@ -53,8 +53,11 @@ export default {
       return this.orderitem.product.productSpecification.name;
     },
     drawOrderItems: function () {
-      let relations = this.specs.find(
-        (el) => el.externalId == this.orderitem.product.productSpecification.id
+      let relations = (
+        this.specs.find(
+          (el) =>
+            el.externalId == this.orderitem.product.productSpecification.id
+        ) || []
       ).entitySpecificationRelationship;
       return relations && relations.length > 0;
     },
@@ -75,9 +78,11 @@ export default {
     },
     getCharSpecs: function () {
       if (this.orderitem.product.productSpecification.id && this.specs) {
-        return this.specs.find(
-          (el) =>
-            el.externalId == this.orderitem.product.productSpecification.id
+        return (
+          this.specs.find(
+            (el) =>
+              el.externalId == this.orderitem.product.productSpecification.id
+          ) || []
         ).entitySpecCharacteristic;
       }
       return [];
@@ -85,7 +90,7 @@ export default {
   },
   methods: {
     removeOrderItem: function () {
-      this.$emit("removeOrderItem", this.orderitem)
+      this.$emit("removeOrderItem", this.orderitem);
     },
     resetOrderItem: function () {
       this.orderitem.orderItems = [];

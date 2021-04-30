@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <the-header v-on:clearOrder="clearOrder" />
-    <the-order :specs="getSpecs(version, catalogType)" :order="order" />
+    <the-header
+      :catalogSnapshot="catalogSnapshot"
+      v-model="version"
+      v-on:clearOrder="clearOrder"
+      v-on:reloadCatalog="reloadCatalog"
+    />
+    <the-order v-if="version" :specs="specs" :order="order" />
   </div>
 </template>
 
 <script>
 import TheHeader from "./components/TheHeader.vue";
 import TheOrder from "./components/TheOrder.vue";
+
+var CATALOG_URL = "http://192.168.1.154:18084";
 
 var CATALOG_STORAGE_KEY = "order-entry-catalog-vuejs-2.0";
 var catalogSnapshotStorage = {
@@ -45,31 +52,55 @@ export default {
   data() {
     return {
       catalogSnapshot: catalogSnapshotStorage.fetch(),
-      version: "3",
+      version: localStorage.getItem("order-entry-version-vuejs-2.0"),
       catalogType: "ProductCatalog",
       order: orderStorage.fetch(),
     };
   },
-  methods: {
-    getSpecs: function (version, catalogType) {
+  computed: {
+    specs: function () {
       if (this.catalogSnapshot) {
-        return this.catalogSnapshot
-          .find((obj) => {
-            return obj.majorVersion == version;
-          })
-          .entitySpecs.filter((obj) => obj.catalogType == catalogType);
+        return (
+          (
+            this.catalogSnapshot.find((obj) => {
+              return obj.majorVersion == this.version;
+            }) || []
+          ).entitySpecs || []
+        ).filter((obj) => obj.catalogType == this.catalogType);
       }
       return [];
     },
+  },
+  methods: {
     clearOrder: function () {
       this.order.extParams = [];
       this.order.orderItems = [];
     },
+    reloadCatalog: function () {
+      fetch(CATALOG_URL + "/api/v1/om-ordering-catalog/catalog/snapshot")
+        .then((response) => response.json())
+        .then((data) => (this.catalogSnapshot = data));
+      this.clearOrder();
+    },
   },
   watch: {
+    version: {
+      handler: function (version) {
+        if (this) {
+          this.clearOrder();
+        }
+        localStorage.setItem("order-entry-version-vuejs-2.0", version)
+      },
+    },
     order: {
       handler: function (order) {
         orderStorage.save(order);
+      },
+      deep: true,
+    },
+    catalogSnapshot: {
+      handler: function (catalogSnapshot) {
+        catalogSnapshotStorage.save(catalogSnapshot);
       },
       deep: true,
     },
