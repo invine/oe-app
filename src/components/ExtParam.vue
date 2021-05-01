@@ -1,8 +1,12 @@
 <template>
-  <div class="ext-param">
-    <input placeholder="Extended Parameter" v-model="extParam.name" />
-    <input placeholder="Value" v-model="extParam.value" />
-    <button v-on:click="removeExtParam" >x</button>
+  <div class="block columns">
+    <input
+      class="input column"
+      placeholder="Extended Parameter"
+      v-model="extParam.name"
+    />
+    <input class="input column" placeholder="Value" v-model="extParam.value" />
+    <button class="delete column" v-on:click="removeExtParam">x</button>
   </div>
 </template>
 
@@ -13,22 +17,14 @@ export default {
     extParam: Object,
   },
   methods: {
-    removeExtParam: function() {
-      this.$emit("removeExtParam", this.extParam)
-    }
+    removeExtParam: function () {
+      this.$emit("removeExtParam", this.extParam);
+    },
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.ext-param {
-  padding: 10px;
-  margin: 0;
-  background: white;
-  border: 1px;
-}
-h2 {
-  color: gray;
-}
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 </style>

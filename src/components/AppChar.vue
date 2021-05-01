@@ -1,13 +1,18 @@
 <template>
-  <div class="characteristic">
-    <span class="char-name">{{ char.name }}</span>
-    <select v-if="isList" v-model="char.value[0]">
+  <div class="columns">
+    <div class="label column block">{{ char.name }}</div>
+    <select class="input column block" v-if="isList" v-model="char.value[0]">
       <option />
       <option v-for="v in values" v-bind:key="v.value">
         {{ v.value }}
       </option>
     </select>
-    <input :placeholder="valueType" v-if="!isList" v-model="char.value[0]" />
+    <input
+      class="input column block"
+      :placeholder="valueType"
+      v-if="!isList"
+      v-model="char.value[0]"
+    />
   </div>
 </template>
 
@@ -29,16 +34,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.characteristic {
-  padding: 10px;
-  margin: 0;
-  background: purple;
-  color: white;
-}
-
-.char-name {
-  color: white;
-  margin-left: 10px;
-  margin-right: 10px;
-}
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 </style>

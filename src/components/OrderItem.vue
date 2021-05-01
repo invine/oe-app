@@ -1,34 +1,37 @@
 <template>
-  <div class="order-item">
-    <h3>{{ orderitem.id }}</h3>
-    <select
-      v-model="orderitem.product.productSpecification"
-      v-on:change="resetOrderItem"
-    >
-      <option v-for="s in listSpecs" v-bind:key="s.id" v-bind:value="s">
-        {{ s.name }}
-      </option>
-    </select>
-    <button v-on:click="removeOrderItem()">x</button>
-    <div v-if="drawOrderItem">
-      <select v-model="orderitem.action">
+  <div class="box">
+    <div class="label block">{{ orderitem.id }}</div>
+    <div class="columns block">
+      <select
+        class="input"
+        v-model="orderitem.product.productSpecification"
+        v-on:change="resetOrderItem"
+      >
+        <option v-for="s in listSpecs" v-bind:key="s.id" v-bind:value="s">
+          {{ s.name }}
+        </option>
+      </select>
+      <select class="input" v-model="orderitem.action" v-if="drawOrderItem">
         <option value="add">Add</option>
         <option value="modify">Modify</option>
         <option value="delete">Delete</option>
         <option value="no_change">No Change</option>
       </select>
-      <app-chars
-        :chars="orderitem.product.characteristic"
-        :specs="getCharSpecs"
-      />
-      <ext-params :extParams="orderitem.extParams" />
-      <order-items
-        v-if="drawOrderItems"
-        :orderitems="orderitem.orderItems"
-        :specs="specs"
-        :parentSpecId="orderitem.product.productSpecification.id"
-      />
+      <button class="delete" v-on:click="removeOrderItem()">x</button>
     </div>
+    <app-chars
+      class="block"
+      :chars="orderitem.product.characteristic"
+      :specs="getCharSpecs"
+    />
+    <ext-params class="block" :extParams="orderitem.extParams" />
+    <order-items
+      class="block"
+      v-if="drawOrderItems"
+      :orderitems="orderitem.orderItems"
+      :specs="specs"
+      :parentSpecId="orderitem.product.productSpecification.id"
+    />
   </div>
 </template>
 
@@ -107,13 +110,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.order-item {
-  padding: 10px;
-  margin: 0;
-  background: yellow;
-  color: red;
-  border-width: 1px;
-  border-style: solid;
-  border-color: black;
-}
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 </style>

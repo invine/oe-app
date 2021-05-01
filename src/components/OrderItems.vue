@@ -1,7 +1,7 @@
 <template>
-  <div class="order-items">
-    <div v-if="drawOrderItem">
-      <h2>Order Items</h2>
+  <div class="box">
+    <div class="block" v-if="drawOrderItem">
+      <div class="subtitle" v-if="!parentSpecId">Order Items</div>
       <ul>
         <li v-for="item in orderitems" v-bind:key="item.id">
           <order-item
@@ -13,12 +13,14 @@
         </li>
       </ul>
     </div>
-    <button v-on:click="addOrderItem">Add Order Item</button>
+    <button class="block button is-primary is-small" v-on:click="addOrderItem">
+      Add Order Item
+    </button>
   </div>
 </template>
 
 <script>
-import { uuid } from 'vue-uuid';
+import { uuid } from "vue-uuid";
 export default {
   components: {
     OrderItem: () => import("./OrderItem.vue"),
@@ -56,10 +58,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.order-items {
-  padding: 10px;
-  margin: 0;
-  background: red;
-  color: white;
-}
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 </style>

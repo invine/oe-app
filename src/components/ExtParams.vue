@@ -1,15 +1,27 @@
 <template>
-  <div class="ext-params">
-    <h3 v-if="drawExtParam">Extended Parameters</h3>
-    <ul>
-      <li v-for="(extParam, index) in extParams" v-bind:key="index">
-        <ext-param
-          :extParam="extParam"
-          v-on:removeExtParam="removeExtParam($event)"
-        />
-      </li>
-    </ul>
-    <button v-on:click="addExtParam">Add Extended Parameter</button>
+  <div>
+    <div class="box" v-if="drawExtParam">
+      <div class="block">
+        <span class="subtitle">Extended Parameters</span>
+      </div>
+      <div class="block">
+        <ul>
+          <li
+            class="block"
+            v-for="(extParam, index) in extParams"
+            v-bind:key="index"
+          >
+            <ext-param
+              :extParam="extParam"
+              v-on:removeExtParam="removeExtParam($event)"
+            />
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button class="button is-primary is-small" v-on:click="addExtParam">
+      Add Extended Parameter
+    </button>
   </div>
 </template>
 
@@ -39,13 +51,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.ext-params {
-  padding: 10px;
-  margin: 0;
-  background: rgb(34, 187, 166);
-  border: 1px;
-}
-h3 {
-  color: rgb(235, 235, 235);
-}
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 </style>

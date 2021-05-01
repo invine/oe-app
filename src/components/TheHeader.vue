@@ -1,17 +1,27 @@
 <template>
-  <div class="order-header">
-    <h1>Table Order Entry</h1>
-    <span>Catalog Version</span>
-    <select
-      v-bind:value="value"
-      v-on:change="$emit('input', $event.target.value)"
-    >
-      <option v-for="v in versions" v-bind:key="v">
-        {{ v }}
-      </option>
-    </select>
-    <button v-on:click="$emit('reloadCatalog')">Reload Catalog</button>
-    <button v-on:click="$emit('clearOrder')">Clear</button>
+  <div class="panel is-primary">
+    <div class="panel-heading">
+      <span class="title">Table Order Entry</span>
+    </div>
+    <div class="panel-block">
+      <!-- <span class="label sub-title">Catalog Version</span> -->
+      <div class="label">Catalog Version</div>
+      <select
+        class="input"
+        v-bind:value="value"
+        v-on:change="$emit('input', $event.target.value)"
+      >
+        <option v-for="v in versions" v-bind:key="v">
+          {{ v }}
+        </option>
+      </select>
+      <button class="button is-primary" v-on:click="$emit('reloadCatalog')">
+        Reload Catalog
+      </button>
+      <button class="button is-danger" v-on:click="$emit('clearOrder')">
+        Clear Order
+      </button>
+    </div>
   </div>
 </template>
 
@@ -32,10 +42,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.order-header {
-  padding: 10px;
-  margin: 0;
-  background: black;
-  color: white;
-}
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 </style>

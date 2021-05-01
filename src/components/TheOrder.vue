@@ -1,7 +1,7 @@
 <template>
-  <div class="order-body">
-    <ext-params :extParams="order.extParams" />
-    <order-items :specs="specs" :orderitems="order.orderItems" />
+  <div>
+    <ext-params class="block" :extParams="order.extParams" />
+    <order-items class="block" :specs="specs" :orderitems="order.orderItems" />
   </div>
 </template>
 
@@ -20,10 +20,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.order-body {
-  padding: 10px;
-  margin: 0;
-  background: blue;
-  color: white;
-}
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 </style>

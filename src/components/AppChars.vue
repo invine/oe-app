@@ -1,8 +1,8 @@
 <template>
   <!-- <div v-if="hasChars"> -->
-  <div class="app-chars" v-if="chars.length > 0">
-    <h3>Characteristics</h3>
-    <ul>
+  <div class="box" v-if="chars.length > 0">
+    <div class="block">Characteristics</div>
+    <ul class="block">
       <li v-for="char in chars" v-bind:key="char.name">
         <app-char
           :char="char"
@@ -43,10 +43,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.app-chars {
-  padding: 10px;
-  margin: 0;
-  background: magenta;
-  color: blue;
-}
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 </style>
