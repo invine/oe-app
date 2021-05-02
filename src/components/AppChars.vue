@@ -1,9 +1,9 @@
 <template>
   <!-- <div v-if="hasChars"> -->
-  <div class="box" v-if="chars.length > 0">
-    <div class="block">Characteristics</div>
-    <ul class="block">
-      <li v-for="char in chars" v-bind:key="char.name">
+  <div v-if="chars.length > 0">
+    <div class="text-center">Characteristics</div>
+    <ul class="group-list ps-1">
+      <li class="group-list-item" v-for="char in chars" v-bind:key="char.name">
         <app-char
           :char="char"
           :spec="getSpec(char)"
@@ -43,5 +43,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 </style>

@@ -1,27 +1,22 @@
 <template>
-  <div>
-    <div class="box" v-if="drawExtParam">
-      <div class="block">
-        <span class="subtitle">Extended Parameters</span>
-      </div>
-      <div class="block">
-        <ul>
-          <li
-            class="block"
-            v-for="(extParam, index) in extParams"
-            v-bind:key="index"
-          >
-            <ext-param
-              :extParam="extParam"
-              v-on:removeExtParam="removeExtParam($event)"
-            />
-          </li>
-        </ul>
-      </div>
+  <div class="container">
+    <div class="d-grid gap-2 p-2">
+      <button class="btn btn-outline-link" v-on:click="addExtParam">
+        Add Extended Parameter
+      </button>
     </div>
-    <button class="button is-primary is-small" v-on:click="addExtParam">
-      Add Extended Parameter
-    </button>
+    <ul class="list-goup px-1">
+      <li
+        class="list-group item"
+        v-for="(extParam, index) in extParams"
+        v-bind:key="index"
+      >
+        <ext-param
+          :extParam="extParam"
+          v-on:removeExtParam="removeExtParam($event)"
+        />
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -32,11 +27,6 @@ export default {
   name: "ExtParams",
   props: {
     extParams: Array,
-  },
-  computed: {
-    drawExtParam: function () {
-      return this.extParams && this.extParams.length > 0;
-    },
   },
   methods: {
     addExtParam: function () {
@@ -51,5 +41,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 </style>

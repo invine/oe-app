@@ -1,18 +1,24 @@
 <template>
-  <div class="columns">
-    <div class="label column block">{{ char.name }}</div>
-    <select class="input column block" v-if="isList" v-model="char.value[0]">
-      <option />
-      <option v-for="v in values" v-bind:key="v.value">
-        {{ v.value }}
-      </option>
-    </select>
-    <input
-      class="input column block"
-      :placeholder="valueType"
-      v-if="!isList"
-      v-model="char.value[0]"
-    />
+  <div class="row">
+    <div class="col-4">
+      <div class="text-start">
+        {{ char.name }}
+      </div>
+    </div>
+    <div class="col-7">
+      <select class="form-select" v-if="isList" v-model="char.value[0]">
+        <option />
+        <option v-for="v in values" v-bind:key="v.value">
+          {{ v.value }}
+        </option>
+      </select>
+      <input
+        class="form-control"
+        :placeholder="valueType"
+        v-if="!isList"
+        v-model="char.value[0]"
+      />
+    </div>
   </div>
 </template>
 
@@ -34,5 +40,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 </style>

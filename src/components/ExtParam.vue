@@ -1,12 +1,20 @@
 <template>
-  <div class="block columns">
+  <div class="d-inline-flex flex-row p-1">
     <input
-      class="input column"
-      placeholder="Extended Parameter"
+      type="name"
+      class="form-control"
+      placeholder="Name"
       v-model="extParam.name"
     />
-    <input class="input column" placeholder="Value" v-model="extParam.value" />
-    <button class="delete column" v-on:click="removeExtParam">x</button>
+    <input
+      type="value"
+      class="form-control"
+      placeholder="Value"
+      v-model="extParam.value"
+    />
+    <div class="px-1">
+      <button class="btn btn-outline-link" v-on:click="removeExtParam"><i class="bi bi-x" style="font-size: 2rem;"></i></button>
+    </div>
   </div>
 </template>
 
@@ -26,5 +34,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
+input[type="name"] {
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+input[type="value"] {
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  border-left: 0px;
+}
 </style>

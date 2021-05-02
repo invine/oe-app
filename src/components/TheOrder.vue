@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ext-params class="block" :extParams="order.extParams" />
     <order-items class="block" :specs="specs" :orderitems="order.orderItems" />
+    <ext-params class="block" :extParams="order.extParams" />
   </div>
 </template>
 
@@ -20,5 +20,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 </style>

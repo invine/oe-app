@@ -1,37 +1,64 @@
 <template>
-  <div class="box">
-    <div class="label block">{{ orderitem.id }}</div>
-    <div class="columns block">
-      <select
-        class="input"
-        v-model="orderitem.product.productSpecification"
-        v-on:change="resetOrderItem"
-      >
-        <option v-for="s in listSpecs" v-bind:key="s.id" v-bind:value="s">
-          {{ s.name }}
-        </option>
-      </select>
-      <select class="input" v-model="orderitem.action" v-if="drawOrderItem">
-        <option value="add">Add</option>
-        <option value="modify">Modify</option>
-        <option value="delete">Delete</option>
-        <option value="no_change">No Change</option>
-      </select>
-      <button class="delete" v-on:click="removeOrderItem()">x</button>
+  <div>
+    <div class="container-fluid p-0">
+      <div class="card p-2 mb-2 shadow">
+        <div class="row mb-2">
+          <div class="col-4">
+            <p class="text-start m-0">
+              <span class="align-middle">
+                {{ shortName }}
+              </span>
+            </p>
+          </div>
+          <div class="col-7">
+            <select
+              class="form-select"
+              v-model="orderitem.product.productSpecification"
+              v-on:change="resetOrderItem"
+            >
+              <option v-for="s in listSpecs" v-bind:key="s.id" v-bind:value="s">
+                {{ s.name }}
+              </option>
+            </select>
+          </div>
+          <div class="col-1">
+            <button class="btn-close" v-on:click="removeOrderItem()"></button>
+          </div>
+        </div>
+        <div class="row mb-2" v-if="drawOrderItem">
+          <div class="col-4">
+            <p class="text-start m-0">
+              <span class="align-middle"> Action </span>
+            </p>
+          </div>
+          <div class="col-7">
+            <select
+              class="form-select"
+              v-model="orderitem.action"
+              v-if="drawOrderItem"
+            >
+              <option value="add">Add</option>
+              <option value="modify">Modify</option>
+              <option value="delete">Delete</option>
+              <option value="no_change">No Change</option>
+            </select>
+          </div>
+        </div>
+        <app-chars
+          class="block"
+          :chars="orderitem.product.characteristic"
+          :specs="getCharSpecs"
+        />
+        <ext-params :extParams="orderitem.extParams" />
+        <order-items
+          class="block"
+          v-if="drawOrderItems"
+          :orderitems="orderitem.orderItems"
+          :specs="specs"
+          :parentSpecId="orderitem.product.productSpecification.id"
+        />
+      </div>
     </div>
-    <app-chars
-      class="block"
-      :chars="orderitem.product.characteristic"
-      :specs="getCharSpecs"
-    />
-    <ext-params class="block" :extParams="orderitem.extParams" />
-    <order-items
-      class="block"
-      v-if="drawOrderItems"
-      :orderitems="orderitem.orderItems"
-      :specs="specs"
-      :parentSpecId="orderitem.product.productSpecification.id"
-    />
   </div>
 </template>
 
@@ -52,6 +79,9 @@ export default {
     parentSpecId: String,
   },
   computed: {
+    shortName: function () {
+      return "Order Item " + this.orderitem.id.substring(0, 6);
+    },
     drawOrderItem: function () {
       return this.orderitem.product.productSpecification.name;
     },
@@ -110,5 +140,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
 </style>
