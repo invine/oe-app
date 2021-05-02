@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container-fluid p-0">
-      <div class="card p-2 mb-2 shadow">
+      <div class="card p-2 mt-4 shadow">
         <div class="row mb-2">
           <div class="col-4">
             <p class="text-start m-0">
