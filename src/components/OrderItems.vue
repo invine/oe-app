@@ -1,21 +1,5 @@
 <template>
   <div class="container px-4">
-    <div class="d-grid gap-2 p-0">
-      <button
-        class="btn btn-outline-link mt-2"
-        v-if="!parentSpecId"
-        v-on:click="addOrderItem"
-      >
-        Add Order Item
-      </button>
-      <button
-        class="btn btn-outline-link"
-        v-if="parentSpecId"
-        v-on:click="addOrderItem"
-      >
-        <i class="bi bi-plus-circle" style="font-size: 2rem"></i>
-      </button>
-    </div>
     <ul class="group-list py-2 ps-2">
       <li
         class="group-list-item"
@@ -30,6 +14,22 @@
         />
       </li>
     </ul>
+    <div class="d-grid gap-2 p-0">
+      <button
+        class="btn btn-outline-link"
+        v-if="!parentSpecId"
+        v-on:click="addOrderItem"
+      >
+        Add Order Item
+      </button>
+      <button
+        class="btn btn-outline-link"
+        v-if="parentSpecId"
+        v-on:click="addOrderItem"
+      >
+        <i class="bi bi-plus-circle" style="font-size: 2rem"></i>
+      </button>
+    </div>
   </div>
 </template>
 
