@@ -23,7 +23,7 @@
         Add Order Item
       </button> -->
       <button
-        class="btn btn-outline-link"
+        class="btn btn-outline-link px-2"
         v-on:click="addOrderItem"
       >
         <i class="bi bi-plus-circle" style="font-size: 2rem"></i>

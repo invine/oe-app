@@ -3,9 +3,9 @@
     <div class="container-fluid">
       <span class="navbar-brand mb-0 h1">Order Entry</span>
       <div class="row g-3 align-items-center">
-        <div class="col-auto">
+              <!-- <div class="col-auto">
           <label class="col-form-label">Catalog</label>
-        </div>
+        </div> -->
         <div class="col-auto">
           <select
             class="form-select"
