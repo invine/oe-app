@@ -97,7 +97,7 @@ export default {
       if (!this.order.relatedParty || this.order.relatedParty.length == 0) {
         this.order.relatedParty = [DEFAULT_CUSTOMER];
       }
-      say(JSON.stringify(this.order));
+      alert(JSON.stringify(this.order));
       /* fetch(this.tmf622Url + "/productOrderingManagement/v1/productOrder", { */
       /*   method: "POST", */
       /*   headers: { */
