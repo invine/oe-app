@@ -97,22 +97,23 @@ export default {
       if (!this.order.relatedParty || this.order.relatedParty.length == 0) {
         this.order.relatedParty = [DEFAULT_CUSTOMER];
       }
-      fetch(this.tmf622Url + "/productOrderingManagement/v1/productOrder", {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer token",
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(this.order),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          alert("Success:", data);
-        })
-        .catch((error) => {
-          alert("Error:", error);
-        });
+      say(JSON.stringify(this.order));
+      /* fetch(this.tmf622Url + "/productOrderingManagement/v1/productOrder", { */
+      /*   method: "POST", */
+      /*   headers: { */
+      /*     Authorization: "Bearer token", */
+      /*     Accept: "application/json", */
+      /*     "Content-Type": "application/json", */
+      /*   }, */
+      /*   body: JSON.stringify(this.order), */
+      /* }) */
+      /*   .then((response) => response.json()) */
+      /*   .then((data) => { */
+      /*     alert("Success:", data); */
+      /*   }) */
+      /*   .catch((error) => { */
+      /*     alert("Error:", error); */
+      /*   }); */
     },
   },
   watch: {
