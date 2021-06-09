@@ -42,7 +42,7 @@ var orderStorage = {
   fetch: function () {
     var order = JSON.parse(
       localStorage.getItem(ORDER_STORAGE_KEY) ||
-        `{ "extParams": [], "orderItem": [] }`
+        `{ "externalId": null, "extParams": [], "orderItem": [] }`
     );
     return order;
   },
