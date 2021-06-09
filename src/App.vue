@@ -16,6 +16,7 @@ import getEnv from "@/utils/env";
 
 import TheHeader from "./components/TheHeader.vue";
 import TheOrder from "./components/TheOrder.vue";
+import { uuid } from "vue-uuid";
 
 var DEFAULT_CUSTOMER = {
   "@referredType": "Customer",
@@ -41,7 +42,7 @@ var orderStorage = {
   fetch: function () {
     var order = JSON.parse(
       localStorage.getItem(ORDER_STORAGE_KEY) ||
-        `{ "extParams": [], "orderItems": [] }`
+        `{ "extParams": [], "orderItem": [] }`
     );
     return order;
   },
@@ -83,7 +84,7 @@ export default {
   methods: {
     clearOrder: function () {
       this.order.extParams = [];
-      this.order.orderItems = [];
+      this.order.orderItem = [];
     },
     reloadCatalog: function () {
       fetch(this.catalogUrl + "/api/v1/om-ordering-catalog/catalog/snapshot")
@@ -97,7 +98,10 @@ export default {
       if (!this.order.relatedParty || this.order.relatedParty.length == 0) {
         this.order.relatedParty = [DEFAULT_CUSTOMER];
       }
-      alert(JSON.stringify(this.order));
+      this.order.externalId = uuid.v4();
+      // alert(JSON.stringify(this.order));
+      navigator.clipboard.writeText(JSON.stringify(this.order, null, "\t"));
+      alert("Order copied to Clipboard");
       /* fetch(this.tmf622Url + "/productOrderingManagement/v1/productOrder", { */
       /*   method: "POST", */
       /*   headers: { */

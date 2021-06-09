@@ -53,7 +53,7 @@
         <order-items
           class="block"
           v-if="drawOrderItems"
-          :orderitems="orderitem.orderItems"
+          :parent="orderitem"
           :specs="specs"
           :parentSpecId="orderitem.product.productSpecification.id"
         />
@@ -126,7 +126,8 @@ export default {
       this.$emit("removeOrderItem", this.orderitem);
     },
     resetOrderItem: function () {
-      this.orderitem.orderItems = [];
+      // delete this.orderitem.orderItem;
+      this.orderitem.orderItem = null;
       this.orderitem.product.characteristic = (this.getCharSpecs || []).map(
         (el) => ({
           name: el.name,
