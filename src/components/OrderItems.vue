@@ -3,7 +3,7 @@
     <ul class="group-list px-0">
       <li
         class="group-list-item"
-        v-for="item in orderitems"
+        v-for="item in parent.orderItem"
         v-bind:key="item.id"
       >
         <order-item
@@ -22,10 +22,7 @@
       >
         Add Order Item
       </button> -->
-      <button
-        class="btn btn-outline-link px-2"
-        v-on:click="addOrderItem"
-      >
+      <button class="btn btn-outline-link px-2" v-on:click="addOrderItem">
         <i class="bi bi-plus-circle" style="font-size: 2rem"></i>
       </button>
     </div>
@@ -40,16 +37,20 @@ export default {
   },
   props: {
     specs: Array,
-    orderitems: Array,
+    // orderitems: Array,
+    parent: Object,
     parentSpecId: String,
   },
   name: "OrderItems",
   methods: {
     addOrderItem: function () {
-      this.orderitems.push({
+      if (!this.parent.orderItem) {
+        this.parent.orderItem = [];
+      }
+      this.parent.orderItem.push({
         id: uuid.v4(),
         action: "add",
-        orderItems: [],
+        orderItem: null,
         extParams: [],
         product: {
           productSpecification: {},
@@ -58,7 +59,7 @@ export default {
       });
     },
     removeOrderItem: function (item) {
-      this.orderitems.splice(this.orderitems.indexOf(item), 1);
+      this.parent.orderItem.splice(this.parent.orderItem.indexOf(item), 1);
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <order-items class="block" :specs="specs" :orderitems="order.orderItems" />
+    <order-items class="block" :specs="specs" :parent="order" />
     <ext-params class="block" :extParams="order.extParams" />
   </div>
 </template>
