@@ -1,5 +1,11 @@
 # oe-app
 
+## Quick Start
+
+```
+docker-compose up -d
+```
+
 ## Project setup
 ```
 yarn install

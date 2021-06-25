@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  oe-app:
+    container_name: oe-app
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      - CATALOG_URL=http://localhost:18084
