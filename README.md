@@ -2,6 +2,8 @@
 
 ## Quick Start
 
+To start local version which is bound to local catalog
+
 ```
 docker-compose up -d
 ```
